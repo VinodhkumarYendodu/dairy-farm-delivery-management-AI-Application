@@ -1,0 +1,24 @@
+{
+  "name": "Dairy subscription notifications",
+  "nodes": [
+    {
+      "parameters": {"httpMethod": "POST", "path": "dairy-notifications", "responseMode": "responseNode", "options": {}},
+      "id": "a43f4737-0ed2-46f7-a239-989bc88bb201", "name": "Notification webhook", "type": "n8n-nodes-base.webhook", "typeVersion": 2, "position": [240, 300], "webhookId": "dairy-notifications"
+    },
+    {
+      "parameters": {"sendTo": "={{ $json.body.to }}", "subject": "={{ $json.body.subject }}", "emailType": "html", "message": "={{ $json.body.html }}", "options": {"appendAttribution": false}
+      },
+      "id": "a43f4737-0ed2-46f7-a239-989bc88bb202", "name": "Send email with Gmail", "type": "n8n-nodes-base.gmail", "typeVersion": 2.1, "position": [500, 300], "credentials": {"gmailOAuth2": {"name": "Dairy Gmail OAuth2"}}
+    },
+    {
+      "parameters": {"respondWith": "json", "responseBody": "={\"accepted\":true,\"notification_id\":$node['Notification webhook'].json.body.notification_id}", "options": {"responseCode": 200}},
+      "id": "a43f4737-0ed2-46f7-a239-989bc88bb203", "name": "Confirm sent", "type": "n8n-nodes-base.respondToWebhook", "typeVersion": 1.1, "position": [760, 300]
+    }
+  ],
+  "connections": {"Notification webhook": {"main": [[{"node": "Send email with Gmail", "type": "main", "index": 0}]]}, "Send email with Gmail": {"main": [[{"node": "Confirm sent", "type": "main", "index": 0}]]}},
+  "active": false,
+  "settings": {"executionOrder": "v1"},
+  "versionId": "a43f4737-0ed2-46f7-a239-989bc88bb204",
+  "meta": {"templateCredsSetupCompleted": false},
+  "tags": []
+}

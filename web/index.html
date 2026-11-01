@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173d2d">
+  <title>Namma Dairy — Daily operations</title>
+  <link rel="stylesheet" href="/assets/styles.css?v=8">
+</head>
+<body>
+  <section id="login-view" class="login-layout">
+    <div class="login-story">
+      <div class="story-brand"><span class="brand-icon">✦</span><span>Namma Dairy</span></div>
+      <div class="story-copy">
+        <span class="eyebrow light">A calmer way to run the daily dairy</span>
+        <h1>Fresh mornings.<br>Everything in step.</h1>
+        <p>Bring customer care, daily availability, delivery planning, and billing into one clear workspace.</p>
+        <div class="story-tags"><span>🥛 Daily plans</span><span>🚚 Delivery routes</span><span>📊 Clear reporting</span></div>
+      </div>
+      <div class="bottle-art" aria-hidden="true"><span>FRESH</span></div>
+      <div class="story-foot">Thoughtfully made for local dairy operations.</div>
+    </div>
+    <div class="login-panel-wrap">
+      <div class="login-panel">
+        <span class="eyebrow">Welcome to Namma Dairy</span>
+        <h2>Choose your login</h2>
+        <p class="muted">Customers manage deliveries. Admins manage dairy operations.</p>
+        <div class="login-role-switch" role="tablist" aria-label="Choose login type">
+          <button type="button" class="login-role active" data-login-mode="CUSTOMER" role="tab" aria-selected="true"><span>🥛</span><b>Customer</b><small>Orders & deliveries</small></button>
+          <button type="button" class="login-role" data-login-mode="ADMIN" role="tab" aria-selected="false"><span>▦</span><b>Admin</b><small>Operations workspace</small></button>
+        </div>
+        <form id="login-form" data-role="CUSTOMER">
+        <label>Username<input name="username" autocomplete="username" required placeholder="Your username"></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required placeholder="Your password"></label>
+        <button class="button primary full" type="submit">Customer sign in <span aria-hidden="true">→</span></button>
+        </form>
+        <button id="signup-link" class="signup-link" type="button" data-action="signup">New to Namma Dairy? <b>Create a customer account</b></button>
+        <div id="login-error" class="form-error" role="alert"></div>
+        <details class="setup-note"><summary>First-time setup</summary><p>Create the first administrator from PowerShell. The password is entered privately at the prompt.</p><code>.\.venv\Scripts\python.exe scripts\create_admin.py</code></details>
+      </div>
+      <p class="login-foot">Local workspace · Chennai</p>
+    </div>
+  </section>
+
+  <div id="app-shell" class="app-shell" hidden>
+    <aside class="sidebar">
+      <a class="brand-lockup" href="#" data-page="dashboard" aria-label="Namma Dairy overview">
+        <span class="brand-icon">✦</span><span><b>Namma Dairy</b><small>DAILY, MADE SIMPLE</small></span>
+      </a>
+      <div class="nav-heading">WORKSPACE</div>
+      <nav id="main-nav" class="main-nav" aria-label="Main navigation"></nav>
+      <div class="sidebar-bottom">
+        <div class="account-summary"><span class="avatar" id="user-avatar">N</span><span><b id="sidebar-user"></b><small id="sidebar-role"></small></span></div>
+        <button class="sidebar-action" data-action="password">⚙ <span>Change password</span></button>
+        <button class="sidebar-action" data-action="logout">↪ <span>Sign out</span></button>
+      </div>
+    </aside>
+    <div class="main-area">
+      <header class="topbar">
+        <div><span class="topbar-label">LOCAL OPERATIONS</span><span class="topbar-location">◉ Chennai</span></div>
+        <div class="topbar-right"><span id="today-label"></span><span class="status-dot"></span><span>Local workspace</span></div>
+      </header>
+      <main id="page-content" class="page-content" tabindex="-1"></main>
+      <footer class="app-footer"><span>Namma Dairy</span><span>Fresh mornings. Everything in step.</span></footer>
+    </div>
+  </div>
+  <dialog id="modal" class="modal"><div class="modal-head"><div><span class="eyebrow" id="modal-eyebrow">WORKSPACE</span><h2 id="modal-title"></h2></div><button class="icon-button" data-action="close-modal" aria-label="Close">×</button></div><div id="modal-body"></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="/assets/app.js?v=10"></script>
+</body>
+</html>

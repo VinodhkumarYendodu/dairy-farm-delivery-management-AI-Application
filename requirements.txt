@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+pydantic-settings
+email-validator
+pyodbc
+httpx
+pytest
+faiss-cpu==1.13.2
+pypdf
+pandas
+openpyxl
+
